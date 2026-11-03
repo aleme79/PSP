@@ -1,0 +1,6 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/tools/jackson/core/jackson-databind/3.2.3/jackson-databind-3.2.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.22/jackson-annotations-2.22.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/tools/jackson/core/jackson-core/3.2.3/jackson-core-3.2.3.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>

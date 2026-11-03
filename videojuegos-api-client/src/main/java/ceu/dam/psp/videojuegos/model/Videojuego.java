@@ -12,5 +12,4 @@ public class Videojuego {
 	
 	// TODO: Completar con los métodos que se considere o con anotaciones de lombok
 	
-	
 }
