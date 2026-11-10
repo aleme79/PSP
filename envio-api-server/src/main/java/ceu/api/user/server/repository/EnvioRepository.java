@@ -1,6 +1,5 @@
 package ceu.api.user.server.repository;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +9,7 @@ import ceu.api.user.server.model.Envio;
 
 public interface EnvioRepository extends JpaRepository<Envio, Long>{
 	
-    List<Envio> findByEstadoAndTemperaturaCelsiusGreaterThan(String estado, BigDecimal limiteTemperatura);
+    List<Envio> findByEstadoAndTemperaturaCelsiusGreaterThan(Double limiteTemperatura);
 
     Optional<Envio> findByCodigoSeguimiento(String codigoSeguimiento);
 

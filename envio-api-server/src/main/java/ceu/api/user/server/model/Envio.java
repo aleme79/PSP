@@ -1,7 +1,7 @@
 package ceu.api.user.server.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ public class Envio {
 	private String codSeguimiento;
 	
 	@Column(name = "fecha_registro")
-	private LocalDate fechaRegistro;
+	private LocalDateTime fechaRegistro;
 	
 	@Column(name = "peso_kg")
 	private BigDecimal peso;
