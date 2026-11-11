@@ -1,15 +1,14 @@
 package ceu.dam.psp.examen.controller;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.modelmapper.ModelMapper;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -82,34 +81,36 @@ public class WallapopController {
 	
 	@Operation(summary = "Creando el articulo", description = "Articulo creado")
 	@PostMapping("/articulos")
-    public Usuario crearArticulo(@Valid @RequestBody ArticuloRequestDto dto) throws NoExisteException {
-        
-		Usuario usuario = service.consultarUsuario(dto.getIdPropietario());
+    public UsuarioResponseDto crearArticulo(@Valid @RequestBody ArticuloRequestDto dto) throws NoExisteException {
+        	
+		Articulo artCreado = modelMapper.map(dto, Articulo.class);
+		artCreado.setFechaPublicacion(LocalDate.now());
+		artCreado.setEstado(0);
 		
-		Articulo artCreado = service.crearArticulo();
+		Usuario user = service.crearArticulo(artCreado);
 		
-        return null;
+        return modelMapper.map(user, UsuarioResponseDto.class);
     }
 
-    @Override
-    public List<Articulo> buscarArticulos(String filtroNombre, String filtroDescripcion, LocalDate filtroFechaAltaMinima) {
+	@Operation(summary = "Buscando el articulo", description = "Articulo encontrado")
+	@GetMapping("/articulos/buscar")
+    public List<ArticuloResponseDto> buscarArticulos(@RequestParam(required = false) String filtro, @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate filtroFechaAltaMinima) {
         
-    	return null;
+		List<Articulo> articulos = service.buscarArticulos(filtro, filtro, filtroFechaAltaMinima);
+        
+    	return articulos.stream()
+    			.map(a -> modelMapper.map(a, ArticuloResponseDto.class))
+    			.toList();
     }
-
-
-    @Override
+    
+	@Operation(summary = "Comprando el articulo", description = "Articulo comprado")
+	@PutMapping("/articulos/{codigo}/comprar")
     public void comprarArticulo(Long codigo) throws ErrorPagoException {
-        null;
+		
+		service.comprarArticulo(codigo);
     }
-    
-    
-    private void cargarDatosPrueba() {
-        null;
-    }
+  
 
-    
-	@Override
 	public String consultarApiKey() {
 		return null;
 	}
